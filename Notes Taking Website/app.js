@@ -2,28 +2,28 @@ showNotes(); //User can see saved notes when Reload
 
 //If User Adds a note, store it into Local Storage
 let addBtn = document.getElementById('addBtn');
+
 addBtn.addEventListener('click' , () => {
 
-    let addHead = document.getElementById('addHead');
+    let addTitle = document.getElementById('addTitle');
     let addText = document.getElementById('addText');
     let notes = localStorage.getItem('notes');
-    let title = localStorage.getItem('title');
 
-    if(notes == null || title == null){
-        titleObj = [];
+    if(notes == null){
         notesObj = [];
     }else{
-        titleObj = JSON.parse(title);
         notesObj = JSON.parse(notes); //Convert into Object
     }
 
-    titleObj.push(addHead.value);
-    notesObj.push(addText.value);
+    let myObj = {
+        title: addTitle.value,
+        text: addText.value
+      }
+    notesObj.push(myObj);
 
     localStorage.setItem('notes' , JSON.stringify(notesObj)); //Store into String format
-    localStorage.setItem('title', JSON.stringify());
     addText.value = "";
-    addHead.value = "";
+    addTitle.value = "";
     // console.log(notesObj);
 
     showNotes();
@@ -32,13 +32,10 @@ addBtn.addEventListener('click' , () => {
 // Function to show elements from Local Storage
 function showNotes(){
     let notes = localStorage.getItem('notes');
-    let title = localStorage.getItem('title');
 
-    if(notes == null || title == null){
-        titleObj = [];
+    if(notes == null){
         notesObj = [];
     }else{
-        titleObj = JSON.parse(title);
         notesObj = JSON.parse(notes); //Convert into Object
     }
 
@@ -47,8 +44,8 @@ function showNotes(){
     notesObj.forEach((element , index) => {
         html += `<div class="noteCard my-2 mx-2 card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">${titleObj[index]}</h5>
-          <p class="card-text">${element}</p>
+          <h5 class="card-title">${element.title}</h5>
+          <p class="card-text">${element.text}</p>
           <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
         </div>
       </div>`;
@@ -68,19 +65,14 @@ function showNotes(){
 function deleteNote(index){
     // console.log('I am deleting Note', Number(index) + 1 );
     let notes = localStorage.getItem('notes');
-    let title = localStorage.getItem('title');
 
-    if(notes == null || title == null){
-        titleObj = [];
+    if(notes == null){
         notesObj = [];
     }else{
-        titleObj = JSON.parse(title);
         notesObj = JSON.parse(notes);
     }
 
-    titleObj.splice(index , 1); //start from index and delete 1 note
     notesObj.splice(index , 1); 
-    localStorage.setItem('title' , JSON.stringify(titleObj)); //Store into String format
     localStorage.setItem('notes' , JSON.stringify(notesObj)); //Store into String format
     showNotes();
 }
@@ -92,13 +84,12 @@ searchText.addEventListener('input' , () => {
     let noteCards = document.getElementsByClassName('noteCard');
     
     Array.from(noteCards).forEach(element => {
-        let cardHead = element.getElementsByTagName("h5")[0].innerText.toLowerCase();
         let cardText = element.getElementsByTagName("p")[0].innerText.toLowerCase();
         // console.log(cardText);
 
         let inputValue = searchText.value.toLowerCase(); //Case InSensitive
 
-        if(cardText.includes(inputValue) || cardHead.includes(inputValue)){
+        if(cardText.includes(inputValue)){
             element.style.display = "block";
         }else{
             element.style.display = "none";
