@@ -84,12 +84,13 @@ searchText.addEventListener('input' , () => {
     let noteCards = document.getElementsByClassName('noteCard');
     
     Array.from(noteCards).forEach(element => {
+        let cardHead = element.getElementsByTagName("h5")[0].innerText.toLowerCase();
         let cardText = element.getElementsByTagName("p")[0].innerText.toLowerCase();
         // console.log(cardText);
 
         let inputValue = searchText.value.toLowerCase(); //Case InSensitive
 
-        if(cardText.includes(inputValue)){
+        if(cardText.includes(inputValue) || cardHead.includes(inputValue)){
             element.style.display = "block";
         }else{
             element.style.display = "none";
