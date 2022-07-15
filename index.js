@@ -56,3 +56,46 @@
 // let a = document.querySelector('.container');
 // a.appendChild(hele);
 
+// function Flour(type , time){
+//     this.type = type;
+//     this.time = time;
+// }
+// Flour.prototype.slogan = function(){
+//     return `This flour : ${this.type}`;
+// }
+// function cake(type , time , name){
+//     Flour.call(this , type , time);
+//     this.name = name;
+// }
+// cake.prototype = Object.create(Flour.prototype);
+
+class Library {
+    constructor(bookList){
+        this.bookList = bookList;
+    }
+
+    getBookList(bookList){
+        this.bookList.forEach(element => {
+            console.log(element);
+        });
+    }
+
+    issueBook(bookName , user){
+        if(this.bookList.includes(bookName)){
+            console.log(`This book is in library`);
+
+            if(this.issuedBooks[bookName] == undefined){
+                this.issuedBooks[bookName] = user;
+                console.log(`This ${bookName} is issued to ${user}`);
+            }else{
+                console.log(`This book already issued`);
+            }
+        }else{
+            console.log(`This book is not in Library!!!`);
+        }
+    }
+
+    returnBook(bookName){
+        delete this.issuedBooks[bookName];
+    }
+}
