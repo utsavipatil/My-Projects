@@ -28,7 +28,7 @@ xhr.onload = function(){ //What to do when responce is ready
                             </div>
                         
                             <div id="collapse${index}" class="collapse" aria-labelledby="heading${index}" data-parent="#newsAccordion">
-                            <div class="card-body Text"> ${element["content"]}. <a href="${element['url']}" target ="_blank" ">Read more</a></div>
+                            <div class="card-body Text"> ${element["description"]}. <a href="${element['url']}" target ="_blank" ">Read more</a></div>
                             </div>
                         </div>`;
             newsHTML += news;
