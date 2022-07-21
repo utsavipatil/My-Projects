@@ -36,7 +36,7 @@ showData();
 
 //Delete Function
 deleteBook = (index) => {
-    let data = document.getElementById('data');
+    let data = localStorage.getItem('data');
     let dataObj;    
     if(data == null){
         dataObj = [];
