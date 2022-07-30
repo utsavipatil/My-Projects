@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- CSS Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <!-- Nav Bar -->
+    <section class="Navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Magic Notes</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" id="searchText" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </section>
+
+    <!-- Header -->
+    <section class="header">
+        <div class="container my-3">
+            <h2>Welcome to Magic Notes</h2>
+            <div class="card" >
+                <div class="card-body">
+                    <h5 class="card-title">Add a title</h5>
+                    <input type="text" class="form-control" id="addTitle" aria-describedby="addTitle" placeholder="Enter title">
+                  <div class="form-floating">
+                    <h5 class="card-title my-2">Add a note</h5>
+                    <textarea class="form-control my-1 p-0" placeholder="Enter Notes" id="addText"></textarea>
+                  </div>
+                  <button class="btn btn-primary my-3" id="addBtn">Add Note</button>
+                </div>
+              </div>
+            <hr>
+            <h4>Your Notes</h4>
+            <hr>
+            <div id="notes" class="row container-fluid">
+                <!-- Here Note Cards will add with help of JS -->
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="app.js"></script>
+</html>
